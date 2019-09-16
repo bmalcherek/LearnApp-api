@@ -25,7 +25,7 @@ SECRET_KEY = 'hkrvf!ehn*fs5y!8g0mvjg54pg@o&g-32x327a-7##h8=@rioz'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['learn-app-api.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = ['learn-app-api.herokuapp.com', '127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -140,14 +140,14 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 
-REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.AllowAny',
-    ),
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework.authentication.TokenAuthentication',
-    ),
-}
+# REST_FRAMEWORK = {
+#     # 'DEFAULT_PERMISSION_CLASSES': (
+#     #     'rest_framework.permissions.AllowAny',
+#     # ),
+#     'DEFAULT_AUTHENTICATION_CLASSES': (
+#         'rest_framework.authentication.TokenAuthentication',
+#     ),
+# }
 
 CORS_ORIGIN_ALLOW_ALL = True
 

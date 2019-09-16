@@ -3,8 +3,9 @@ from math import ceil
 
 from rest_framework import status, permissions
 from rest_framework.generics import ListAPIView, RetrieveAPIView
-from rest_framework.decorators import api_view, permission_classes
+from rest_framework.decorators import api_view, permission_classes, authentication_classes
 from rest_framework.response import Response
+from rest_framework.authentication import TokenAuthentication
 from django.http import HttpResponse, JsonResponse
 
 from quiz.models import Question, Collection, MyCollections, MyQuestions
@@ -12,7 +13,8 @@ from .serializers import QuestionSerializer, CollectionSerializer, MyCollections
 
 
 @api_view(['GET', 'POST'])
-@permission_classes((permissions.IsAuthenticated, ))
+@authentication_classes([TokenAuthentication])
+# @permission_classes((permissions.IsAuthenticated, ))
 def collectionListView(request):
     # permission_classes = [permissions.AllowAny]
     if request.method == 'GET':
@@ -31,7 +33,8 @@ def collectionListView(request):
 
 
 @api_view(['GET', 'PUT', 'DELETE'])
-@permission_classes((permissions.IsAuthenticated, ))
+@authentication_classes([TokenAuthentication])
+# @permission_classes((permissions.IsAuthenticated, ))
 def collectionDetailView(request, collection_id):
     try:
         collection = Collection.objects.get(id=collection_id)
@@ -55,7 +58,8 @@ def collectionDetailView(request, collection_id):
 
 
 @api_view(['PUT'])
-@permission_classes((permissions.IsAuthenticated, ))
+@authentication_classes([TokenAuthentication])
+# @permission_classes((permissions.IsAuthenticated, ))
 def putRatingToCollection(request, collection_id):
     try:
         collection = Collection.objects.get(id=collection_id)
@@ -79,7 +83,8 @@ def putRatingToCollection(request, collection_id):
 
 
 @api_view(['GET', 'POST'])
-@permission_classes((permissions.IsAuthenticated, ))
+@authentication_classes([TokenAuthentication])
+# @permission_classes((permissions.IsAuthenticated, ))
 def questionListView(request, collection_id):
     if request.method == 'GET':
         queryset = Question.objects.filter(collection=collection_id)
@@ -97,7 +102,8 @@ def questionListView(request, collection_id):
 
 
 @api_view(['GET', 'PUT', 'DELETE'])
-@permission_classes((permissions.IsAuthenticated, ))
+@authentication_classes([TokenAuthentication])
+# @permission_classes((permissions.IsAuthenticated, ))
 def questionDetailView(request, collection_id, question_id):
     try:
         question = Question.objects.get(collection=collection_id, id=question_id)
@@ -121,7 +127,8 @@ def questionDetailView(request, collection_id, question_id):
 
 
 @api_view(['GET',])
-@permission_classes((permissions.IsAuthenticated, ))
+@authentication_classes([TokenAuthentication])
+# @permission_classes((permissions.IsAuthenticated, ))
 def get_user(request):
     # print(request.user)
     try:
@@ -136,7 +143,8 @@ def get_user(request):
 
 
 @api_view(['GET', 'POST'])
-@permission_classes((permissions.IsAuthenticated, ))
+@authentication_classes([TokenAuthentication])
+# @permission_classes((permissions.IsAuthenticated, ))
 def myCollectionsListView(request):
     if request.method == 'GET':
         queryset = MyCollections.objects.filter(user=request.user)
@@ -198,7 +206,8 @@ def myCollectionsListView(request):
 
 
 @api_view(['GET', 'DELETE'])
-@permission_classes((permissions.IsAuthenticated, ))
+@authentication_classes([TokenAuthentication])
+# @permission_classes((permissions.IsAuthenticated, ))
 def myCollectionsDetailView(request, collection_id):
     try:
         collection = MyCollections.objects.get(id=collection_id)
@@ -221,7 +230,8 @@ def myCollectionsDetailView(request, collection_id):
 
 
 @api_view(['GET'])
-@permission_classes((permissions.IsAuthenticated, ))
+@authentication_classes([TokenAuthentication])
+# @permission_classes((permissions.IsAuthenticated, ))
 def MyQuestionsView(request, my_collection_id):
     try:
         questions = MyQuestions.objects.filter(my_collection_id=my_collection_id)
@@ -251,7 +261,8 @@ def MyQuestionsView(request, my_collection_id):
 
 
 @api_view(['GET', 'PUT'])
-@permission_classes((permissions.IsAuthenticated, ))
+@authentication_classes([TokenAuthentication])
+# @permission_classes((permissions.IsAuthenticated, ))
 def myQuestionsDetailedView(request, my_collection_id, question_id):
     # print(my_collection_id, question_id)
     try:
@@ -302,7 +313,8 @@ def myQuestionsDetailedView(request, my_collection_id, question_id):
 
 
 @api_view(['GET'])
-@permission_classes((permissions.IsAuthenticated, ))
+@authentication_classes([TokenAuthentication])
+# @permission_classes((permissions.IsAuthenticated, ))
 def getQuestionsToLearn(request, my_collection_id):
     try:
         questions = MyQuestions.objects.filter(my_collection_id=my_collection_id)
