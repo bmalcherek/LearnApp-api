@@ -264,7 +264,6 @@ def MyQuestionsView(request, my_collection_id):
 @authentication_classes([TokenAuthentication])
 # @permission_classes((permissions.IsAuthenticated, ))
 def myQuestionsDetailedView(request, my_collection_id, question_id):
-    # print(my_collection_id, question_id)
     try:
         question = MyQuestions.objects.get(id=question_id)
     except:

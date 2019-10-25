@@ -19,7 +19,7 @@ SECRET_KEY = 'hkrvf!ehn*fs5y!8g0mvjg54pg@o&g-32x327a-7##h8=@rioz'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['learn-app-api.herokuapp.com', '127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['learn-app-api.herokuapp.com', 'learn-app-new-design.herokuapp.com', '127.0.0.1', 'localhost']
 
 
 # Application definition
